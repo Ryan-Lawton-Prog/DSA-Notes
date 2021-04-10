@@ -2,9 +2,9 @@
 
 ## Topics
 * Binary Tree Traversal
- - Pre-order
- - In-order
- - Post-order
+> - Pre-order
+> - In-order
+> - Post-order
  
 ## Problems
 TBD
