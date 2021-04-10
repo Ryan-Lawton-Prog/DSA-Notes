@@ -1,0 +1,30 @@
+TODO:
+[x] PreOrder Traversal
+[ ] InOrder Traversal
+[ ] PostOrder Traversal
+[ ] Recursive and Iterative
+// use Alt+L to cycle
+
+Ordered lists:
+
+Unordered list:
+- testing
+- weird
+- IMPORTANT: item 3
+
+-= Heading 1 =-
+== Heading 2 ==
+
+
+[python]
+def code(test):
+    print(test)
+[end]
+
+
+sentence with #tag# and a "qoute" or `two`
+---> Arrow
+===> Double Arrow
+*emphasis* for word between asterisks.
+! critical ! marker for somethign really important.
+// Comment
