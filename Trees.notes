@@ -1,0 +1,102 @@
+-= Definitions =-
+
+
+!Pre-order Traversal
+- Traverse starting at the root and navigating left to right
+
+"Recursive Approach"
+[python]
+    def helper(root, res):
+        res.append(root.val)
+        if root.left is not None:
+            helper(root.left, res)
+        if root.right is not None:
+            helper(root.right, res)
+        
+    res = []
+    helper(root, res)
+    return res
+[end]
+
+--->1. Create List
+--->2. Call Recursive Function
+--->3. Append Node Value
+--->4. Move to Left Node
+--->5. Move to Right Node
+
+"Iterative Approach"
+[python] 
+    # Create a stack  and list of output
+    stack, output = [root, ], []
+
+    #loop through stack
+    while stack:
+        root = stack.pop() # get next node
+        output.append(root.val) # append val
+        if root.left is not None # check to add left Node
+            stack.append(root.left)
+        if root.right is not None # check to add right Node
+            stack.append(root.right)
+[end]
+
+--->1. Create Stack and output List
+--->2. Loop through stack until empty
+--->3. Append Node Value
+--->4. Add Left Node to Stack
+--->5. Add Right Node to Stack
+
+
+
+!In-order Traversal
+- Traverse starting from the left then visit root followed by traversing right
+
+"Recursive Approach"
+[python]
+    def helper(root: TreeNode, res: List[int]) -> None:
+        if root is not None:
+            if root.left is not None:
+                helper(root.left, res)
+            res.append(root.val)
+            if root.right is not None:
+                helper(root.right, res)
+
+    res = []
+    helper(root,res)
+    return res
+[end]
+
+--->1. Create List
+--->2. Call Recursive Function
+--->3. Move to Left most Node
+--->4. Append Node Value
+--->5. Move to Right most Node
+
+"Iterative Approach"
+[python]
+    res = []
+    stack = []
+    curr = root
+    while curr is not None or stack:
+        while curr is not None:
+            stack.append(curr)
+            curr = curr.left
+        curr = stack.pop()
+        res.append(curr.val)
+        curr = curr.right
+    return res
+[end]
+
+--->1. "Create" #Stack# and output #List#
+--->2. "Loop" through #Stack# until empty
+--->3. "Loop" until current #Node# is None
+--->4. "Append" current #Node# to #Stack#
+--->5. "Shift" current #Node# to the left !FIN!
+--->6. "Pop" #Stack# and save to current #Node#
+--->7. "Append" current #Node# value to output #List#
+--->8. "Shift" current #Node# to the right !FIN!
+
+
+
+!Post-order Traversal
+- Traverse left then right subtree followed by the root
+- Deletion of a node uses Post-order as you have to traverse all child nodes before you can delete the specified node
