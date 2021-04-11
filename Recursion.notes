@@ -1,0 +1,13 @@
+!Top-down Solution
+--->1. return if root is null
+--->2. if root is a leaf node:
+--->3.     answer = max(answer, depth)         // update the answer if needed
+--->4. maximum_depth(root.left, depth + 1)     // call the function recursively for left child
+--->5. maximum_depth(root.right, depth + 1) 
+
+
+!Bottom-up Solution
+--->1. return 0 if root is null                 // return 0 for null node
+--->2. left_depth = maximum_depth(root.left)
+--->3. right_depth = maximum_depth(root.right)
+--->4. return max(left_depth, right_depth) + 1  // return depth of the subtree rooted at root
