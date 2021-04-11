@@ -17,12 +17,14 @@
     helper(root, res)
     return res
 [end]
+#Time O(n)
+#Space O(n)
 
---->1. Create List
---->2. Call Recursive Function
---->3. Append Node Value
---->4. Move to Left Node
---->5. Move to Right Node
+--->1. "Create" #List#
+--->2. "Call" #Recursive# Function
+--->3. "Append" #Node# Value
+--->4. "Move" to Left #Node#
+--->5. "Move" to Right #Node#
 
 "Iterative Approach"
 [python] 
@@ -38,12 +40,14 @@
         if root.right is not None # check to add right Node
             stack.append(root.right)
 [end]
+#Time O(n)
+#Space O(n)
 
---->1. Create Stack and output List
---->2. Loop through stack until empty
---->3. Append Node Value
---->4. Add Left Node to Stack
---->5. Add Right Node to Stack
+--->1. "Create" #Stack# and output #List#
+--->2. "Loop" through #Stack# until empty
+--->3. "Append" #Node# Value
+--->4. "Add" Left #Node# to #Stack#
+--->5. "Add" Right #Node# to #Stack# !FIN!
 
 
 
@@ -64,15 +68,19 @@
     helper(root,res)
     return res
 [end]
+#Time O[n]
+#Space O[n], averagae: O[log n]
 
---->1. Create List
---->2. Call Recursive Function
---->3. Move to Left most Node
---->4. Append Node Value
---->5. Move to Right most Node
+--->1. "Create" #List#
+--->2. "Call" #Recursive# Function
+--->3. "Shift" to Left most #Node#
+--->4. "Append" #Node# Value
+--->5. "Shift" to Right most #Node#
 
 "Iterative Approach"
 [python]
+    if not root:
+        return
     res = []
     stack = []
     curr = root
@@ -85,6 +93,8 @@
         curr = curr.right
     return res
 [end]
+#Time O[n]
+#Space O[n]
 
 --->1. "Create" #Stack# and output #List#
 --->2. "Loop" through #Stack# until empty
@@ -100,3 +110,113 @@
 !Post-order Traversal
 - Traverse left then right subtree followed by the root
 - Deletion of a node uses Post-order as you have to traverse all child nodes before you can delete the specified node
+
+"Recursive Approach"
+[python]
+    res = []
+    def helper(root):
+        if root:
+            helper(root.left)
+            helper(root.right)
+            res.append(root.val)
+        return
+    helper(root)
+    return res
+[end]
+#Time O[n]
+#Space Worst: O(n) Average: O(h) where h is the height of the tree
+
+--->1. "Create" output #List#
+--->2. "Call" Recursion
+--->3. if #Root# not #None#
+--->4. "Call" helper on left #Node#
+--->5. "Call" helper on right #Node#
+--->6. "Append" #Node# value to output #List#
+
+"Iterative Approach"
+[python]
+    if not root: return None
+    stack, res = [root,], []
+    while stack:
+        val = stack.pop()
+        res.append(val.val)
+        if val.left:
+            stack.append(val.left)
+        if val.right:
+            stack.append(val.right)
+    return res[::-1]    
+[end]
+#Time O[n]
+#Space Worst: O(n) Average: O(h) where h is the height of the tree
+
+--->1. "Create" #Stack# and output #List#
+--->2. "Loop" through #Stack# until empty
+--->3. "Append" #Node# Value
+--->4. "Add" Left #Node# to #Stack#
+--->5. "Add" Right #Node# to #Stack# !FIN!
+--->6. "Reverse" #List#
+
+
+!Level-order Traversal
+- Traverse the tree one row at a Time
+- BFS is the most common algorithm to accomplish this
+
+"Recursive Approach"
+[python]
+    levels = []
+        
+    if not root: return levels
+    
+    def helper(root,row):
+        if len(levels) == row:
+            levels.append([])
+            
+        levels[row].append(root.val)
+        
+        if root.left:
+            helper(root.left,row+1)
+        if root.right:
+            helper(root.right,row+1)
+    helper(root,0)
+    return levels
+[end]
+#Time O[n]
+#Space Worst: O(n) Average: O(h) where h is the height of the tree
+
+--->1. "Create" output #List#
+--->2. "Call" recursive Function
+--->3. "Add" new level to output #List# if row has been "Incremented"
+--->4. "Append" root value to output #List#
+--->5. "Call" helper on left #Node# if left exists
+--->6. "Call" helper on right #Node# if right exists
+
+"Iterative Approach"
+[python]
+    levels = []
+    
+    if not root:
+        return levels
+    
+    level = 0
+    queue = deque([root,])
+    
+    while queue:
+        levels.append([])
+        level_length = len(queue)
+        
+        for _ in range(level_length):
+            node = queue.popleft()
+            
+            levels[level].append(node.val)
+            
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
+        level += 1
+    
+    return levels
+[end]
+#Time O(n)
+#Space O(n)
