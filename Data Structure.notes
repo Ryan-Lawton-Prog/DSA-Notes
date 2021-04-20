@@ -1,0 +1,17 @@
+!Linked List
+- A list of items that point to the next "node" in the list
+- Can be customised to contain any type and kind of value
+- Only can traverse in one direction
+
+!Doubly Linked list
+- A linked list that also points back to the previous node allowing you to traverse forwards and backwards.
+
+!Stacks
+- "FILO" First in Last out #or# "LIFO" Last in First out
+- Think of it as a stack of books, you have to get the top book out first before you can access anything underneath
+- Similar to "linked list" but with different operation times to retrieve data
+
+!Queues
+- "FIFO" First in first out
+- Think of a normal queue where someone goes to the end, and the person and the beginning leaves
+- Similar to "linked list" but with different operation times to retrieve data
