@@ -17,3 +17,37 @@
 --->2.Optimize by using a memoization table (top-down[2] dynamic programming)
 --->3.Remove the need for recursion (bottom-up dynamic programming)
 --->4.Apply final tricks to reduce the time / memory complexity
+
+!Divide and Conquer
+[python]
+def divide_and_conquer( S ):
+    # (1). Divide the problem into a set of subproblems.
+    [S1, S2, ... Sn] = divide(S)
+
+    # (2). Solve the subproblem recursively,
+    #   obtain the results of subproblems as [R1, R2... Rn].
+    rets = [divide_and_conquer(Si) for Si in [S1, S2, ... Sn]]
+    [R1, R2,... Rn] = rets
+
+    # (3). combine the results from the subproblems.
+    #   and return the combined result.
+    return combine([R1, R2,... Rn])
+[end]
+
+!backtracking
+[python]
+def backtrack(candidate):
+    if find_solution(candidate):
+        output(candidate)
+        return
+    
+    # iterate all possible candidates.
+    for next_candidate in list_of_candidates:
+        if is_valid(next_candidate):
+            # try this partial candidate solution
+            place(next_candidate)
+            # given the candidate, explore further.
+            backtrack(next_candidate)
+            # backtrack
+            remove(next_candidate)
+[end]
